@@ -10,7 +10,7 @@ export const useAuthLazyFetch = (request: any, options: any | undefined | null) 
         onRequest({ request, options }) {
             // Set the request headers
             options.headers = {
-                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoiYTE1MzFjZTVlZmYxNGNkNDlhNTNlZDM2NWM2MWQ4ODMiLCJkIjoiMTY4MDA2OSIsInIiOiJzYSIsInAiOiJmcmVlIiwiYSI6ImZpbmRlci5pbyIsImwiOiJ1czEiLCJleHAiOjE2ODMyNzE0MDB9.kpbsYFJk8vFQ7fDvykjEr75TTo8rS-8mEpoq7P3nhhY `,
+                Authorization: `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1IjoiM2QwMjI0MjY1MDBmNDA1Njk1OWMwY2M1Nzk4Mzg0NjgiLCJkIjoiMTY4MDA2OCIsInIiOiJzYSIsInAiOiJmcmVlIiwiYSI6ImZpbmRlci5pbyIsImwiOiJ1czEiLCJleHAiOjE2ODMyNzEyMzd9.lMm7qCLU343-fMBeaOSy-LYa37vVUPmF3ncRpw3XOg4 `,
             }
         },
 

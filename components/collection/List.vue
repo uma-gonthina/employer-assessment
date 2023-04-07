@@ -23,7 +23,6 @@
           :key="`row-${index}`"
           class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium sm:pl-0"
         >
-        
           {{ row[field] }}
         </td>
       </tr>
@@ -33,6 +32,6 @@
 <script setup>
 const fields = ref(["name", "difficulty_level", "description"]);
 const props = defineProps({
-  form: { type: Array , required: true },
+  form: { type: Array, required: true },
 });
 </script>
