@@ -83,7 +83,7 @@
   const application = ref([]);
   
   const { data:appplicationData } = await useAuthLazyFetch(
-    `https://v7-stark-db-orm.mercury.infinity-api.net/api/assessments/?offset=0&limit=100&sort_column=id&sort_direction=desc`,
+    `https://v1-stark-db-orm.mars.hipso.cc/api/applications/?offset=0&limit=100`,
     {}
   );
   application.value = appplicationData.value;
@@ -92,11 +92,11 @@
   
   const add = async (application: any) => {
     const { data } = await useAuthLazyFetchPost(
-      `https://v7-stark-db-orm.mercury.infinity-api.net/api/applications/`,
+      `https://v1-stark-db-orm.mars.hipso.cc/api/applications/`,
       {
         body: {
   "candidate_id": application.candidate_id,
-  "job_posting_id": "string",
+  "job_posting_id": application.job_posting_id,
   "status": application.status,
   "resume_url": application.resume_url,
   "cover_letter": application.cover_letter,
@@ -113,7 +113,7 @@
   const getApplications = async () => {
     application.value = [];
     const { data: appplicationData } = await useAuthLazyFetch(
-      `https://v7-stark-db-orm.mercury.infinity-api.net/api/assessments/?offset=0&limit=100&sort_column=id&sort_direction=desc`,
+      `https://v1-stark-db-orm.mars.hipso.cc/api/applications/?offset=0&limit=100`,
       {}
     );
     application.value = appplicationData.value;

@@ -30,7 +30,7 @@
     </table>
   </template>
   <script setup lang="ts">
-  const fields = ref(["candidate_id", "resume_url", "cover_letter"]);
+  const fields = ref(["job_posting_id", "status","resume_url", "cover_letter"]);
   const props = defineProps({
     application: { type: Array, required: true },
   });
