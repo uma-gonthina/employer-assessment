@@ -1,7 +1,16 @@
 <template>
   <div
-    class="block w-[800px] p-4 bg-white border border-gray-200 rounded-lg shadow bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:bg-gray-700 mt-2"
+    class="block w-full p-4 bg-white border border-gray-200 rounded-lg shadow bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:bg-gray-700 mt-2"
   >
+    <div class="flex justify-end">
+      <button
+        type="button"
+        class="rounded-full bg-indigo-600 p-4 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+        @click="open = true"
+      >
+        New project
+      </button>
+    </div>
     <projectList
       v-if="project.length"
       :project="project"
@@ -9,17 +18,9 @@
     />
   </div>
   <div class="flex justify-end">
-    <button
-      type="button"
-      class="rounded-full bg-indigo-600 p-4 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-      @click="open = true"
-    >
-      New project
-    </button>
     <TransitionRoot as="template" :show="open">
       <Dialog as="div" class="relative z-10" @close="open = false">
         <div class="fixed inset-0" />
-
         <div class="fixed inset-0 overflow-hidden">
           <div class="absolute inset-0 overflow-hidden">
             <div
@@ -127,31 +128,9 @@ const add = async (project: any) => {
 // Edit notes
 const edit = async (note: any) => {
   await useAuthLazyFetchPut(
-    `https://v2-orm-gharpe.mercury.infinity-api.net/api/properties/${note.uid}`,
+    `https://v2-orm-gharpe.mercury.infinity-api.net/api/projects/${note.note.uid}`,
     {
-      body: {
-        name: "string",
-        property_build_area: 0,
-        blocks: 0,
-        units: "string",
-        total_floors: 0,
-        approve_status: "Active",
-        description: "string",
-        address: "string",
-        avg_price: 0,
-        flats_in_floor: 0,
-        prefs: {
-          available: "Boy",
-          suited: "Students",
-          allowed_non_veg: true,
-          allowed_opposite_sex: true,
-          allowed_any_time: true,
-          allowed_visitors: true,
-          allowed_drinking: true,
-        },
-        project_id: "string",
-        visit_count: 0,
-      },
+      body: note.note,
     }
   );
   await getProjects();
@@ -160,11 +139,10 @@ const edit = async (note: any) => {
 // Delete Projects
 const deleteNote = async (note: any) => {
   await useAuthLazyFetchDelete(
-    `https://v2-orm-gharpe.mercury.infinity-api.net/api/properties/${note.note.uid}`,
+    `https://v2-orm-gharpe.mercury.infinity-api.net/api/projects/${note.note.uid}`,
     {}
   );
   project.value.splice(note.index, 1);
-   getProjects();
 };
 
 // Edit and Delete events
@@ -180,5 +158,4 @@ const getProjects = async () => {
   );
   project.value = projectdata.value;
 };
-
 </script>

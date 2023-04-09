@@ -1,44 +1,183 @@
 <template>
-    <div>
-      <!--Edit project starts here-->
-      <div
-        v-if="editInput"
-        class="flex flex-row items-center h-16 bg-white w-full"
-      >
-        <div class="flex-grow">
-          <div class="relative w-full">
-            <input
-              v-model="selectedNote"
-              type="text"
-              class="flex w-full border rounded-lg focus:outline-none border-gray-300 focus:border-indigo-300 h-10"
-            />
-          </div>
-        </div>
-        <div class="ml-4">
-          <!--Update button-->
-          <button
-            class="flex items-center justify-center bg-indigo-600 hover:bg-indigo-500 rounded-lg text-white p-2 px-3 flex-shrink-0"
-            @click="editNote(selectedNote), (editInput = false)"
-          >
-            Update
-          </button>
-        </div>
-      </div>
-      <!--Edit project ends here-->
+  <div>
+    <label
+      for="name"
+      class="block text-sm font-semibold leading-6 text-gray-900"
+      >name:</label
+    >
+    <div class="mt-2.5">
+      <input
+        name="name"
+        v-model="project.name"
+        id="note"
+        rows="4"
+        class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      />
     </div>
-  </template>
+  </div>
+
+
+  <div>
+    <label
+      for="category"
+      class="block text-sm font-semibold leading-6 text-gray-900"
+      >category:</label
+    >
+  <div class="mt-2.5">
+      <select
+        v-model="project.category"
+        class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      >
+        <option>Residential</option>
+        <option>Commercial</option>
+      </select>
+    </div>
+</div>
+
+
+
+  <div>
+    <label
+      for="status"
+      class="block text-sm font-semibold leading-6 text-gray-900"
+      >status:</label
+    >
+    <div class="mt-2.5">
+      <select
+        v-model="project.status"
+        class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      >
+        <option>Fully Constructed</option>
+        <option>Under Construction</option>
+        <option>New Venture</option>
+      </select>
+    </div>
+  </div>
+
+
+  <div>
+    <label
+      for="listing_type_name"
+      class="block text-sm font-semibold leading-6 text-gray-900"
+      >listing_type_name:</label
+    >
+    <div class="mt-2.5">
+      <input
+        name="listing_type_name"
+        v-model="project.listing_type_name"
+        id="note"
+        rows="4"
+        class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      />
+    </div>
+  </div>
+
+
+  <div>
+    <label
+      for="details"
+      class="block text-sm font-semibold leading-6 text-gray-900"
+      >details:</label
+    >
+    <div class="mt-2.5">
+      <input
+        name="details"
+        v-model="project.details"
+        id="note"
+        rows="4"
+        class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      />
+    </div>
+  </div>
+
+
+  <div>
+    <label
+      for="specifications"
+      class="block text-sm font-semibold leading-6 text-gray-900"
+      >specifications:</label
+    >
+    <div class="mt-2.5">
+      <input
+        name="specifications"
+        v-model="project.specifications"
+        id="note"
+        rows="4"
+        class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      />
+    </div>
+  </div>
+
+
+<div>
+    <label
+      for="approve_status"
+      class="block text-sm font-semibold leading-6 text-gray-900"
+      >approve_status:</label
+    >
+  <div class="mt-2.5">
+      <select
+        v-model="project.approve_status"
+        class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+      >
+        <option>Under Review</option>
+        <option>Rejected</option>
+        <option>Active</option>
+        <option>Deleted</option>
+        <option>Expiring Soon</option>
+        <option>Expired</option>
+        <option>Inactive</option>
+      </select>
+    </div>
+</div>
+
+
+  <div class="mt-10 flex">
+    <button
+      type="submit"
+      @click="emit('cancel')"
+      class="block mr-2 rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+    >
+      cancel
+    </button>
+
+
+    <button
+      type="submit"
+      @click="emit('edit', project)"
+      class="block rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+    >
+      update
+    </button>
+  </div>
+</template>
   <script setup lang="ts">
-  const props = defineProps({
-    note: { type: String, required: true }, // Edited note
-  });
-  const selectedNote = ref(props.note.note);
+  interface project {
+    project:{
+  "name": "",
+  "listing_type_name": "",
+  "category": "Residential",
+  "sub_category": "Apartment",
+  "status": "Fully Constructed",
+  "details": "",
+  "specifications": "",
+  "possession_date": "2023-04-08",
+  "age_of_the_project": "string",
+  "logo_url": "string",
+  "total_project_area": 0,
+  "metric": "sq.ft",
+  default_image_url: string,
+  "visit_count": 0,
+  "rera_approved": true,
+  "approve_status": "Active"
+}
+  }
+  const props = defineProps<project>();
+  const project = ref(props.project)
+  
+
+
   // Close input after editing
-  const editInput = ref("true");
-  const emit = defineEmits(["edit"]);
-  const editNote = (data: any) => {
-    emit("edit", { uid: props.note.uid, note: data });
-    // Empty the project value
-    selectedNote.value = "";
-  };
+  const emit = defineEmits(["edit", 'cancel']);
   </script>
   
