@@ -13,11 +13,11 @@
           <td v-for="(field, index) in fields" :key="`row-${index}`"
             class="whitespace-nowrap py-4 pl-4 pr-3 text-sm font-medium sm:pl-0">
             {{ row[field] }}
-          </td>
-          <div class="flex">
+            <div class="flex" v-if="field=='actions'">
             <TrashIcon class="w-7 m-3" @click="emitData(row, index, 'delete')" />
             <PencilSquareIcon class="w-7 m-3" @click="emitData(row, index, 'edit')" />
           </div>
+          </td>
         </tr>
       </tbody>
     </table>
@@ -110,6 +110,7 @@
     "gender",
     "date_of_birth",
     "designation",
+    "actions",
   ]);
   const emit = defineEmits(["emitData"]);
   const props = defineProps({
