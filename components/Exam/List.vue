@@ -14,7 +14,7 @@
     </thead>
     <tbody class="divide-y divide-gray-800">
       <tr
-        v-for="(row, index) in employee"
+        v-for="(row, index) in student"
         :key="`item-${index}`"
         class="cursor-pointer hover:bg-gray-200"
       >
@@ -75,12 +75,12 @@
 
               <div v-if="edit">
                 <ExamEdit
-                  :employee="editEmployee"
+                  :student="editStudent"
                   @edit="
                     (openModal = false),
                       (edit = false),
                       emit('emitData', {
-                        emp: $event,
+                        data: $event,
                         value: 'edit',
                         index: editIndex,
                       })
@@ -88,7 +88,7 @@
                   @cancel="closeModal"
                 />
               </div>
-              <div v-if="deleteEmployee">
+              <div v-if="deleteStudent">
                 <p>do you want to delete?</p>
                 <div class="mt-10 flex">
                   <button
@@ -96,7 +96,7 @@
                     @click="
                       (openModal = false),
                         emit('emitData', {
-                            emp: $event,
+                            data: $event,
                           value: 'delete',
                           index: editIndex,
                         })
@@ -140,29 +140,29 @@ const fields = ref([
 ]);
 const emit = defineEmits(["emitData"]);
 const props = defineProps({
-  employee: { type: Array, required: true },
+  student: { type: Array, required: true },
 });
-const editEmployee = ref({});
+const editStudent = ref({});
 const editIndex = ref(-1);
 const edit = ref(false);
 
-const deleteEmployee = ref(false);
+const deleteStudent = ref(false);
 
 const openModal = ref(false);
 
-const emitData = (emp: any, index: any, value: any) => {
+const emitData = (data: any, index: any, value: any) => {
   openModal.value = true;
   editIndex.value = index;
-  editEmployee.value = JSON.parse(JSON.stringify(emp));
+  editStudent.value = JSON.parse(JSON.stringify(data));
   if (value == "edit") {
     edit.value = true;
   } else {
-    deleteEmployee.value = true;
+    deleteStudent.value = true;
   }
 };
 const closeModal = () => {
   openModal.value = false;
   edit.value = false;
-  deleteEmployee.value = false;
+  deleteStudent.value = false;
 };
 </script>

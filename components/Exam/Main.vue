@@ -31,8 +31,8 @@
     class="block w-full p-4 bg-white border border-gray-200 rounded-lg shadow bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:bg-gray-700 mt-2"
   >
     <ExamList
-      v-if="employees && employees.length"
-      :employee="employees"
+      v-if="students && students.length"
+      :student="students"
       @emitData="emitData"
     />
   </div>
@@ -103,45 +103,45 @@ function openModal() {
   isOpen.value = true;
 }
 
-const employees: any = ref([]);
+const students: any = ref([]);
 
 onMounted(() => {
-  if (localStorage.getItem("employeeDetails"))
-    employees.value = JSON.parse(localStorage.getItem("employeeDetails"));
+  if (localStorage.getItem("studentData"))
+    students.value = JSON.parse(localStorage.getItem("studentData"));
 });
 
-const add = async (employee: any) => {
-  employees.value.push(employee);
-  localStorage.setItem("employeeDetails", JSON.stringify(employees.value));
+const add = async (student: any) => {
+  students.value.push(student);
+  localStorage.setItem("studentData", JSON.stringify(students.value));
 
   isOpen.value = false;
 };
-// Edit employee
-const edit = async (emp: any) => {
-  employees.value[emp.index] = emp.emp;
-  localStorage.setItem("employeeDetails", JSON.stringify(employees.value));
+// Edit student
+const edit = async (data: any) => {
+  students.value[data.index] = data.edatamp;
+  localStorage.setItem("studentData", JSON.stringify(students.value));
 };
-// Delete employee
-const deleteEmployee = async (emp: any) => {
-  employees.value.splice(emp.index, 1);
-  localStorage.setItem("employeeDetails", JSON.stringify(employees.value));
+// Delete student
+const deleteStudent = async (data: any) => {
+  students.value.splice(data.index, 1);
+  localStorage.setItem("studentData", JSON.stringify(students.value));
 };
 
 // Edit and Delete events
-const emitData = (emp: Object) => {
-    emp.value == "edit" ? edit(emp) : deleteEmployee(emp);
+const emitData = (data: Object) => {
+    data.value == "edit" ? edit(data) : deleteStudent(data);
 };
 
 const searchQuery = ref();
 
 const getSearchName = () => {
   if (searchQuery.value) {
-    employees.value = employees.value.filter((item: any) => {
+    students.value = students.value.filter((item: any) => {
       return item.name.toLowerCase().includes(searchQuery.value.toLowerCase());
     });
   } else {
-    // If search query is empty, show all employees
-    employees.value = JSON.parse(localStorage.getItem("employeeDetails"));
+    // If search query is empty, show all students
+    students.value = JSON.parse(localStorage.getItem("studentData"));
   }
 };
 </script>
