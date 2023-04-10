@@ -70,7 +70,7 @@
                 as="h3"
                 class="text-lg font-medium leading-6 text-gray-900"
               >
-                {{ edit ? "Edit" : "Delete" }}-employee
+                {{ edit ? "Edit" : "Delete" }}-student
               </DialogTitle>
 
               <div v-if="edit">

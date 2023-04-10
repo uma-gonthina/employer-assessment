@@ -1,4 +1,5 @@
 <template>
+    <p class="font-bold">Add Student</p>
   <div>
     <label
       for="s_no"
