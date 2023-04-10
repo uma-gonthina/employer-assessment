@@ -9,8 +9,8 @@
       <input
         type="number"
         name="s_no"
-        v-model="project.s_no"
-        id="note"
+        v-model="employee.s_no"
+        id="emp"
         rows="4"
         class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
       />
@@ -25,8 +25,8 @@
     <div class="mt-2.5">
       <input
         name="name"
-        v-model="project.name"
-        id="note"
+        v-model="employee.name"
+        id="emp"
         rows="4"
         class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
       />
@@ -40,8 +40,8 @@
       <input
         type="number"
         name="age"
-        v-model="project.age"
-        id="note"
+        v-model="employee.age"
+        id="emp"
         rows="4"
         class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
       />
@@ -56,7 +56,7 @@
     >
     <div class="mt-2.5">
       <select
-        v-model="project.gender"
+        v-model="employee.gender"
         class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
       >
         <option>male</option>
@@ -75,8 +75,8 @@
       <input
         type="date"
         name="date_of_birth"
-        v-model="project.date_of_birth"
-        id="note"
+        v-model="employee.date_of_birth"
+        id="emp"
         rows="4"
         class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
       />
@@ -91,7 +91,7 @@
     >
     <div class="mt-2.5">
       <select
-        v-model="project.designation"
+        v-model="employee.designation"
         class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
       >
         <option>manager</option>
@@ -111,7 +111,7 @@
 
     <button
       type="submit"
-      @click="emit('add', project)"
+      @click="emit('add', employee)"
       class="block rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
     >
       save
@@ -120,7 +120,7 @@
 </template>
 <script setup lang="ts">
 const emit = defineEmits(["add", "cancel"]);
-const project = ref({
+const employee = ref({
   s_no: "",
   name: "",
   age: "",

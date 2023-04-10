@@ -30,7 +30,11 @@
   <div
     class="block w-full p-4 bg-white border border-gray-200 rounded-lg shadow bg-gray-100 dark:bg-gray-800 dark:border-gray-700 dark:bg-gray-700 mt-2"
   >
-    <ExamList v-if="projects && projects.length" :project="projects" @emitData="emitData" />
+    <ExamList
+      v-if="employees && employees.length"
+      :employee="employees"
+      @emitData="emitData"
+    />
   </div>
 
   <TransitionRoot appear :show="isOpen" as="template">
@@ -99,45 +103,45 @@ function openModal() {
   isOpen.value = true;
 }
 
-const projects: any = ref([]);
+const employees: any = ref([]);
 
 onMounted(() => {
-    if(localStorage.getItem("projectDetails"))
-  projects.value = JSON.parse(localStorage.getItem("projectDetails"));
+  if (localStorage.getItem("employeeDetails"))
+    employees.value = JSON.parse(localStorage.getItem("employeeDetails"));
 });
 
-const add = async (project: any) => {
-  projects.value.push(project);
-  localStorage.setItem("projectDetails", JSON.stringify(projects.value));
+const add = async (employee: any) => {
+  employees.value.push(employee);
+  localStorage.setItem("employeeDetails", JSON.stringify(employees.value));
 
   isOpen.value = false;
 };
-// Edit project 
-const edit = async (note: any) => {
-  projects.value[note.index] = note.note;
-  localStorage.setItem("projectDetails", JSON.stringify(projects.value));
+// Edit employee
+const edit = async (emp: any) => {
+  employees.value[emp.index] = emp.emp;
+  localStorage.setItem("employeeDetails", JSON.stringify(employees.value));
 };
-// Delete Projects
-const deleteNote = async (note: any) => {
-  projects.value.splice(note.index, 1);
-  localStorage.setItem("projectDetails", JSON.stringify(projects.value));
+// Delete employee
+const deleteEmployee = async (emp: any) => {
+  employees.value.splice(emp.index, 1);
+  localStorage.setItem("employeeDetails", JSON.stringify(employees.value));
 };
 
 // Edit and Delete events
-const emitData = (note: Object) => {
-  note.value == "edit" ? edit(note) : deleteNote(note);
+const emitData = (emp: Object) => {
+    emp.value == "edit" ? edit(emp) : deleteEmployee(emp);
 };
 
 const searchQuery = ref();
 
-const getSearchName=()=> {
-    if (searchQuery.value) {
-    projects.value = projects.value.filter((item: any) => {
+const getSearchName = () => {
+  if (searchQuery.value) {
+    employees.value = employees.value.filter((item: any) => {
       return item.name.toLowerCase().includes(searchQuery.value.toLowerCase());
     });
   } else {
-    // If search query is empty, show all projects
-    projects.value = JSON.parse(localStorage.getItem("projectDetails"));
+    // If search query is empty, show all employees
+    employees.value = JSON.parse(localStorage.getItem("employeeDetails"));
   }
-}
+};
 </script>

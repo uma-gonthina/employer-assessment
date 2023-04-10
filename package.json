@@ -18,6 +18,7 @@
     "@headlessui/vue": "^1.7.12",
     "@heroicons/vue": "^2.0.17",
     "chart.js": "^4.2.1",
-    "pinia": "^2.0.34"
+    "pinia": "^2.0.34",
+    "vue-chartjs": "^5.2.0"
   }
 }
